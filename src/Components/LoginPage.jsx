@@ -75,22 +75,26 @@ const LoginPage = () => {
             {error && <p className="mb-4 text-red-500">{error}</p>}
 
             <div className="mb-4">
-                <label className="block text-gray-700">Email</label>
+                <label htmlFor="email" className="block text-gray-700">Email</label>
                 <input
+                    id="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
+                    required
                 />
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700">Contraseña</label>
+                <label htmlFor="password" className="block text-gray-700">Contraseña</label>
                 <input
+                    id="password"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
+                    required
                 />
             </div>
 

@@ -80,6 +80,7 @@ const RegistrationForm = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
+                    required
                 />
                 {error.email && <p className="text-red-500">{error.email}</p>}
             </div>
@@ -91,6 +92,7 @@ const RegistrationForm = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
+                    required
                 />
                 {error.name && <p className="text-red-500">{error.name}</p>}
             </div>
@@ -102,6 +104,7 @@ const RegistrationForm = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
+                    required
                 />
                 {error.password && <p className="text-red-500">{error.password}</p>}
             </div>
@@ -113,6 +116,7 @@ const RegistrationForm = () => {
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
+                    required
                 />
                 {error.confirmPassword && <p className="text-red-500">{error.confirmPassword}</p>}
             </div>
