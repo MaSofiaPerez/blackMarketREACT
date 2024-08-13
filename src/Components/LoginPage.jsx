@@ -69,38 +69,40 @@ const LoginPage = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="p-6 max-w-md mx-auto bg-white shadow-md rounded">
-            <h2 className="text-lg font-medium mb-4">Iniciar Sesión</h2>
-            {message && <p className="mb-4 text-red-500">{message}</p>}
-            {error && <p className="mb-4 text-red-500">{error}</p>}
+        <div className="flex items-center justify-center min-h-screen">
+            <form onSubmit={handleSubmit} className="p-8 max-w-lg w-full bg-white shadow-md rounded-md">
+                <h2 className="text-lg font-medium mb-4 text-center">Iniciar Sesión</h2>
+                {message && <p className="mb-4 text-red-500 text-center">{message}</p>}
+                {error && <p className="mb-4 text-red-500 text-center">{error}</p>}
 
-            <div className="mb-4">
-                <label className="block text-gray-700">Email</label>
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full p-2 border rounded mt-1"
-                />
-            </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm">Email</label>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full p-2 border rounded mt-1"
+                    />
+                </div>
 
-            <div className="mb-4">
-                <label className="block text-gray-700">Contraseña</label>
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full p-2 border rounded mt-1"
-                />
-            </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700 text-sm">Contraseña</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-full p-2 border rounded mt-1"
+                    />
+                </div>
 
-            <button
-                type="submit"
-                className="w-full bg-blue-500 text-white p-2 rounded"
-            >
-                Iniciar sesión
-            </button>
-        </form>
+                <button
+                    type="submit"
+                    className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+                >
+                    Iniciar sesión
+                </button>
+            </form>
+        </div>
     );
 };
 

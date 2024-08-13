@@ -8,8 +8,8 @@ const Header = ({isAuthenticated}) => {
     <h1 className="text-xl font-bold">BlackMarket</h1>
     {!isAuthenticated && (
       <div>
-        <Link to='/login' className="bg-blue-500 px-4 py-2 mr-2 rounded">Sign In</Link>
-        <Link to='/' className="bg-green-500 px-4 py-2 rounded">Sign Up</Link>
+        <Link to='/login' className="bg-blue-500 px-4 py-2 mr-2 rounded hover:bg-blue-600">Sign In</Link>
+        <Link to='/' className="bg-green-500 px-4 py-2 rounded hover:bg-green-600">Sign Up</Link>
       </div>
     )}
   </header>
