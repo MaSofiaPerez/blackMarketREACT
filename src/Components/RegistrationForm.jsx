@@ -61,7 +61,7 @@ const RegistrationForm = () => {
                         setMessage('Error al crear usuario: ' + (data.message || 'Error desconocido'))
                     }
                 } catch (error) {
-                    console.error('Error details:', error); // Log the error to the console
+                    console.error('Error details:', error); 
                     setMessage('Error de conexión')
                 }
         }
