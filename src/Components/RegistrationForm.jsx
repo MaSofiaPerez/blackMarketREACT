@@ -77,6 +77,8 @@ const RegistrationForm = () => {
                 <label className="block text-gray-700">Email</label>
                 <input
                     type="email"
+                    id="email"
+                    name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
@@ -89,6 +91,8 @@ const RegistrationForm = () => {
                 <label className="block text-gray-700">Nombre</label>
                 <input
                     type="text"
+                    id="name"
+                    name="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
@@ -101,6 +105,8 @@ const RegistrationForm = () => {
                 <label className="block text-gray-700">Contraseña</label>
                 <input
                     type="password"
+                    id="password"
+                    name="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
@@ -113,6 +119,8 @@ const RegistrationForm = () => {
                 <label className="block text-gray-700">Confirmar constraseña</label>
                 <input
                     type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     className="w-full p-2 border rounded mt-1"

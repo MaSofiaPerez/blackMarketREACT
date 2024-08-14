@@ -81,6 +81,7 @@ const LoginPage = () => {
                 <input
                     id="email"
                     type="email"
+                    name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
@@ -93,6 +94,7 @@ const LoginPage = () => {
                 <input
                     id="password"
                     type="password"
+                    name="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
