@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../Context/AuthContext';
+
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -7,6 +9,8 @@ const LoginPage = () => {
     const [error, setError] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate(); 
+    const { setIsAuthenticated } = useAuth();
+
 
     const validateEmail = (email) => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -49,12 +53,10 @@ const LoginPage = () => {
                     const accessToken = response.headers.get('access-token');
                     const uid = response.headers.get('uid');
                     const client = response.headers.get('client');
-
-                    // Almacena los tokens en el almacenamiento local (o en el contexto global)
                     localStorage.setItem('access-token', accessToken);
                     localStorage.setItem('uid', uid);
                     localStorage.setItem('client', client);
-
+                    setIsAuthenticated(true);
                     setMessage('Inicio de sesión exitoso');
                     navigate('/home');
                 } else {
