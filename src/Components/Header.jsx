@@ -21,7 +21,7 @@ const Header = () => {
         ) : (
           <div>
             <Link to='/login' className="bg-blue-500 px-4 py-2 mr-2 rounded">Sign In</Link>
-            <Link to='/signup' className="bg-green-500 px-4 py-2 rounded">Sign Up</Link>
+            <Link to='/' className="bg-green-500 px-4 py-2 rounded">Sign Up</Link>
           </div>
         )}
       </nav>
