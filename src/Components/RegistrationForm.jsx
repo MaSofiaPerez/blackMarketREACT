@@ -74,11 +74,12 @@ const RegistrationForm = () => {
             {message && <p className="mb-4 text-red-500">{message}</p>}
 
             <div className="mb-4">
-                <label className="block text-gray-700">Email</label>
+                <label htmlFor="email" className="block text-gray-700">Email</label>
                 <input
                     type="email"
                     id="email"
                     name="email"
+                    autoComplete="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
@@ -88,11 +89,12 @@ const RegistrationForm = () => {
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700">Nombre</label>
+                <label htmlFor="name" className="block text-gray-700">Nombre</label>
                 <input
                     type="text"
                     id="name"
                     name="name"
+                    autoComplete="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
@@ -102,11 +104,12 @@ const RegistrationForm = () => {
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700">Contraseña</label>
+                <label htmlFor="password" className="block text-gray-700">Contraseña</label>
                 <input
                     type="password"
                     id="password"
                     name="password"
+                    autoComplete="new-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
@@ -116,11 +119,12 @@ const RegistrationForm = () => {
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700">Confirmar constraseña</label>
+                <label htmlFor="confirmPassword" className="block text-gray-700">Confirmar constraseña</label>
                 <input
                     type="password"
                     id="confirmPassword"
                     name="confirmPassword"
+                    autoComplete="off"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     className="w-full p-2 border rounded mt-1"

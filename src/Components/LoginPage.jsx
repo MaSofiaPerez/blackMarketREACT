@@ -82,6 +82,7 @@ const LoginPage = () => {
                     id="email"
                     type="email"
                     name="email"
+                    autoComplete="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
@@ -95,6 +96,7 @@ const LoginPage = () => {
                     id="password"
                     type="password"
                     name="password"
+                    autoComplete="current-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full p-2 border rounded mt-1"
