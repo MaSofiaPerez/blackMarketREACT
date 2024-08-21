@@ -6,20 +6,23 @@ import Footer from './Components/footer';
 import Banner from './Components/Banner';
 import './App.css'
 import { AuthProvider } from './Context/AuthContext';
+import { CartProvider } from './Context/CartContext';
 
 function App() {
 
 
   return (
     <AuthProvider>
-      <Router>
-        <div className="flex flex-col min-h-screen">
-          <Header  />
-          <Banner />
-          <Main />
-          <Footer />
-        </div>
-      </Router>
+      <CartProvider>
+        <Router>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <Banner />
+            <Main />
+            <Footer />
+          </div>
+        </Router>
+      </CartProvider>
     </AuthProvider>
 
 
