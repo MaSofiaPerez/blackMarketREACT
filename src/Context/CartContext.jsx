@@ -5,35 +5,36 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
 
-    useEffect(() => {
-        const loadCart = async () => {
-            const token = localStorage.getItem('access-token');
-            const uid = localStorage.getItem('uid');
-            const client = localStorage.getItem('client');
+    const loadCart = async () => {
+        const token = localStorage.getItem('access-token');
+        const uid = localStorage.getItem('uid');
+        const client = localStorage.getItem('client');
 
-            try {
-                const response = await fetch('https://rs-blackmarket-api.herokuapp.com/api/v1/shopping_cart', {
-                    method: "GET",
-                    headers: {
-                        "access-token": token,
-                        uid: uid,
-                        client: client,
-                        "Content-type": "application/json"
-                    }
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    setCart(data.line_items || []);
-                } else {
-                    console.log("Error al cargar el carrito: ", data.errors || "Error desconocido");
+        try {
+            const response = await fetch('https://rs-blackmarket-api.herokuapp.com/api/v1/shopping_cart', {
+                method: "GET",
+                headers: {
+                    "access-token": token,
+                    uid: uid,
+                    client: client,
+                    "Content-type": "application/json"
                 }
-            } catch (error) {
-                console.log("Error: ", error);
-            }
-        };
+            });
 
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log(data);
+                setCart(data.line_items || []);
+            } else {
+                console.log("Error al cargar el carrito: ", data.errors || "Error desconocido");
+            }
+        } catch (error) {
+            console.log("Error: ", error);
+        }
+    };
+
+    useEffect(() => {
         loadCart();
     }, []);
 
@@ -62,7 +63,7 @@ export const CartProvider = ({ children }) => {
             const data = await response.json();
 
             if (response.ok) {
-                setCart(prevCart => [...prevCart, data]); // Actualiza el carrito local
+                loadCart(); // Recargar el carrito
             } else {
                 console.log("Error al añadir al carrito: ", data.errors || "Error desconocido");
             }
@@ -70,14 +71,14 @@ export const CartProvider = ({ children }) => {
             console.log("Error: ", error);
         }
     };
-    //NO FUNCIONA
-    const removeItem = async (productId) => {
+
+    const removeItem = async (lineItemId) => {
         const token = localStorage.getItem('access-token');
         const uid = localStorage.getItem('uid');
         const client = localStorage.getItem('client');
 
         try {
-            const response = await fetch(`https://rs-blackmarket-api.herokuapp.com/api/v1/shopping_cart/line_items/${productId}`, {
+            const response = await fetch(`https://rs-blackmarket-api.herokuapp.com/api/v1/shopping_cart/line_items/${lineItemId}`, {
                 method: 'DELETE',
                 headers: {
                     'access-token': token,
@@ -87,26 +88,24 @@ export const CartProvider = ({ children }) => {
                 }
             });
 
-            const data = await response.json();
-
             if (response.ok) {
-                loadCart();
+                loadCart(); // Recargar el carrito
             } else {
+                const data = await response.json();
                 console.log("Error al eliminar el producto: ", data.errors || "Error desconocido");
             }
         } catch (error) {
             console.log("Error: ", error);
         }
     };
-    //NO FUNCIONA
-    const updateItemQuantity = async (productId, newQuantity) => {
+
+    const updateItemQuantity = async (lineItemId, newQuantity) => {
         const token = localStorage.getItem('access-token');
         const uid = localStorage.getItem('uid');
         const client = localStorage.getItem('client');
-        console.log(productId)
 
         try {
-            const response = await fetch(`https://rs-blackmarket-api.herokuapp.com/api/v1/shopping_cart/line_items/${productId}`, {
+            const response = await fetch(`https://rs-blackmarket-api.herokuapp.com/api/v1/shopping_cart/line_items/${lineItemId}`, {
                 method: 'PATCH',
                 headers: {
                     'accept': 'application/json',
@@ -121,19 +120,17 @@ export const CartProvider = ({ children }) => {
                     }
                 })
             });
-            const data = await response.json();
 
             if (response.ok) {
-                loadCart();
+                loadCart(); // Recargar el carrito
             } else {
+                const data = await response.json();
                 console.log("Error al actualizar la cantidad: ", data.errors || "Error desconocido");
             }
         } catch (error) {
             console.log("Error: ", error);
         }
     };
-
-
 
     return (
         <CartContext.Provider value={{ cart, updateItemQuantity, removeItem, addItemToCart }}>
