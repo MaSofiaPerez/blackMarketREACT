@@ -29,7 +29,15 @@ const Cart = () => {
 
     return (
         <div className="container mx-auto p-6">
-            <h2 className="text-2xl font-bold mb-4">Tu carrito</h2>
+           <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold">Tu carrito</h2>
+                <button 
+                    onClick={() => navigate('/home')}
+                    className="px-4 py-2 bg-blue-500 text-white rounded"
+                >
+                    Ir al Home
+                </button>
+            </div>
             <div className="mb-4">
                 <input 
                     type="text" 

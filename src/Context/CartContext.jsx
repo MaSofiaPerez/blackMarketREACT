@@ -24,7 +24,6 @@ export const CartProvider = ({ children }) => {
             const data = await response.json();
 
             if (response.ok) {
-                console.log(data);
                 setCart(data.line_items || []);
             } else {
                 console.log("Error al cargar el carrito: ", data.errors || "Error desconocido");
@@ -42,7 +41,7 @@ export const CartProvider = ({ children }) => {
         const token = localStorage.getItem('access-token');
         const uid = localStorage.getItem('uid');
         const client = localStorage.getItem('client');
-
+    
         try {
             const response = await fetch('https://rs-blackmarket-api.herokuapp.com/api/v1/shopping_cart/line_items', {
                 method: 'POST',
@@ -59,18 +58,20 @@ export const CartProvider = ({ children }) => {
                     }
                 })
             });
-
+    
             const data = await response.json();
-
+    
             if (response.ok) {
-                loadCart(); // Recargar el carrito
+                loadCart();
             } else {
-                console.log("Error al añadir al carrito: ", data.errors || "Error desconocido");
+                console.log("Error al añadir al carrito: " + JSON.stringify(data.errors, null, 2))
+               
             }
         } catch (error) {
             console.log("Error: ", error);
         }
     };
+    
 
     const removeItem = async (lineItemId) => {
         const token = localStorage.getItem('access-token');
