@@ -69,77 +69,87 @@ const RegistrationForm = () => {
 
 
     return (
-        <form onSubmit={handleSubmit} className="p-6 max-w-md mx-auto bg-white shadow-md rounded">
-            <h2 className="text-lg font-medium mb-4">Crear Cuenta</h2>
-            {message && <p className="mb-4 text-red-500">{message}</p>}
+        <div className="flex min-h-screen">
+        {/* Columna izquierda para la imagen */}
+        <div className="w-1/2 bg-cover bg-right rounded bg-imgRegistro" >
+        </div>
 
-            <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-700">Email</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    autoComplete="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full p-2 border rounded mt-1"
-                    required
-                />
-                {error.email && <p className="text-red-500">{error.email}</p>}
-            </div>
+        {/* Columna derecha para el formulario */}
+        <div className="w-1/2 flex justify-center items-center bg-white">
+            <form onSubmit={handleSubmit} className="p-6 max-w-md w-full">
+                <h2 className="text-5xl font-medium mb-6">Crear Cuenta</h2>
 
-            <div className="mb-4">
-                <label htmlFor="name" className="block text-gray-700">Nombre</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    autoComplete="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full p-2 border rounded mt-1"
-                    required
-                />
-                {error.name && <p className="text-red-500">{error.name}</p>}
-            </div>
+                {message && <p className="mb-4 text-red-500">{message}</p>}
 
-            <div className="mb-4">
-                <label htmlFor="password" className="block text-gray-700">Contraseña</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    autoComplete="new-password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full p-2 border rounded mt-1"
-                    required
-                />
-                {error.password && <p className="text-red-500">{error.password}</p>}
-            </div>
+                <div className="mb-4">
+                    <label htmlFor="email" className="block text-gray-700">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        autoComplete="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full p-2 border rounded mt-1"
+                        required
+                    />
+                    {error.email && <p className="text-red-500">{error.email}</p>}
+                </div>
 
-            <div className="mb-4">
-                <label htmlFor="confirmPassword" className="block text-gray-700">Confirmar constraseña</label>
-                <input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    autoComplete="off"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full p-2 border rounded mt-1"
-                    required
-                />
-                {error.confirmPassword && <p className="text-red-500">{error.confirmPassword}</p>}
-            </div>
+                <div className="mb-4">
+                    <label htmlFor="name" className="block text-gray-700">Nombre</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        autoComplete="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="w-full p-2 border rounded mt-1"
+                        required
+                    />
+                    {error.name && <p className="text-red-500">{error.name}</p>}
+                </div>
 
-            <button
-                type="submit"
-                className="w-full bg-blue-500 text-white p-2 rounded"
-            >
-                Crear cuenta
-            </button>
-        </form>
+                <div className="mb-4">
+                    <label htmlFor="password" className="block text-gray-700">Contraseña</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        autoComplete="new-password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-full p-2 border rounded mt-1"
+                        required
+                    />
+                    {error.password && <p className="text-red-500">{error.password}</p>}
+                </div>
+
+                <div className="mb-4">
+                    <label htmlFor="confirmPassword" className="block text-gray-700">Confirmar Contraseña</label>
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        autoComplete="new-password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        className="w-full p-2 border rounded mt-1"
+                        required
+                    />
+                    {error.confirmPassword && <p className="text-red-500">{error.confirmPassword}</p>}
+                </div>
+
+                <button
+                    type="submit"
+                    className="w-full bg-blue-500 text-white p-2 rounded"
+                >
+                    Crear Cuenta
+                </button>
+            </form>
+        </div>
+    </div>
     )
 }
 

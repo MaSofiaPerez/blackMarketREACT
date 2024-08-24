@@ -66,7 +66,6 @@ const ProductDetail = () => {
         })
         .catch(error => {
             console.error('Error al añadir a favoritos:', error.message);
-            // Aquí puedes mostrar un mensaje de error en la UI si lo deseas
         });
     };
 

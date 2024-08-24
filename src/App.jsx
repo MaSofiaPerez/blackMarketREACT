@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './Components/header';
 import Main from './Components/main';
@@ -17,7 +16,6 @@ function App() {
         <Router>
           <div className="flex flex-col min-h-screen">
             <Header />
-            <Banner />
             <Main />
             <Footer />
           </div>
