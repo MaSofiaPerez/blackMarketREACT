@@ -6,6 +6,7 @@ import Banner from './Components/Banner';
 import './App.css'
 import { AuthProvider } from './Context/AuthContext';
 import { CartProvider } from './Context/CartContext';
+import { FavoritesProvider } from './Context/FavoritesContext';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
   return (
     <AuthProvider>
       <CartProvider>
+        <FavoritesProvider >
         <Router>
           <div className="flex flex-col min-h-screen">
             <Header />
@@ -20,6 +22,7 @@ function App() {
             <Footer />
           </div>
         </Router>
+        </FavoritesProvider>
       </CartProvider>
     </AuthProvider>
 

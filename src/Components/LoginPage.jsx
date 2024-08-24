@@ -74,8 +74,6 @@ const LoginPage = () => {
         <div className="flex min-h-screen">
         <div className="w-1/2 bg-cover bg-center bg-imgLogin rounded">
         </div>
-
-        {/* Columna derecha para el formulario */}
         <div className="w-1/2 flex justify-center items-center bg-white">
             <form onSubmit={handleSubmit} className="p-6 max-w-md w-full">
                 <h2 className="text-5xl font-medium mb-6 ">Iniciar Sesión</h2>
@@ -84,7 +82,7 @@ const LoginPage = () => {
                 {error && <p className="mb-4 text-red-500">{error}</p>}
 
                 <div className="mb-4">
-                    <label htmlFor="email" className="block text-gray-700">Email</label>
+                    <label htmlFor="email" className="block text-gray-700 font-medium">Email</label>
                     <input
                         id="email"
                         type="email"
@@ -98,7 +96,7 @@ const LoginPage = () => {
                 </div>
 
                 <div className="mb-4">
-                    <label htmlFor="password" className="block text-gray-700">Contraseña</label>
+                    <label htmlFor="password" className="block text-gray-700 font-medium">Contraseña</label>
                     <input
                         id="password"
                         type="password"
@@ -113,7 +111,7 @@ const LoginPage = () => {
 
                 <button
                     type="submit"
-                    className="w-full bg-blue-500 text-white p-2 rounded"
+                    className="w-full bg-blue-700 text-white font-medium p-2 rounded"
                 >
                     Iniciar sesión
                 </button>

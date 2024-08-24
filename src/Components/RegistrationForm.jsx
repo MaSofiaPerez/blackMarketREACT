@@ -70,11 +70,9 @@ const RegistrationForm = () => {
 
     return (
         <div className="flex min-h-screen">
-        {/* Columna izquierda para la imagen */}
         <div className="w-1/2 bg-cover bg-right rounded bg-imgRegistro" >
         </div>
 
-        {/* Columna derecha para el formulario */}
         <div className="w-1/2 flex justify-center items-center bg-white">
             <form onSubmit={handleSubmit} className="p-6 max-w-md w-full">
                 <h2 className="text-5xl font-medium mb-6">Crear Cuenta</h2>
@@ -82,7 +80,7 @@ const RegistrationForm = () => {
                 {message && <p className="mb-4 text-red-500">{message}</p>}
 
                 <div className="mb-4">
-                    <label htmlFor="email" className="block text-gray-700">Email</label>
+                    <label htmlFor="email" className="block text-gray-700 font-medium">Email</label>
                     <input
                         type="email"
                         id="email"
@@ -97,7 +95,7 @@ const RegistrationForm = () => {
                 </div>
 
                 <div className="mb-4">
-                    <label htmlFor="name" className="block text-gray-700">Nombre</label>
+                    <label htmlFor="name" className="block text-gray-700 font-medium">Nombre</label>
                     <input
                         type="text"
                         id="name"
@@ -112,7 +110,7 @@ const RegistrationForm = () => {
                 </div>
 
                 <div className="mb-4">
-                    <label htmlFor="password" className="block text-gray-700">Contraseña</label>
+                    <label htmlFor="password" className="block text-gray-700 font-medium">Contraseña</label>
                     <input
                         type="password"
                         id="password"
@@ -127,7 +125,7 @@ const RegistrationForm = () => {
                 </div>
 
                 <div className="mb-4">
-                    <label htmlFor="confirmPassword" className="block text-gray-700">Confirmar Contraseña</label>
+                    <label htmlFor="confirmPassword" className="block text-gray-700 font-medium">Confirmar Contraseña</label>
                     <input
                         type="password"
                         id="confirmPassword"
@@ -143,7 +141,7 @@ const RegistrationForm = () => {
 
                 <button
                     type="submit"
-                    className="w-full bg-blue-500 text-white p-2 rounded"
+                    className="w-full bg-blue-900 text-white font-medium p-2 rounded"
                 >
                     Crear Cuenta
                 </button>

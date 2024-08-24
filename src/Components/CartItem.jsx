@@ -14,20 +14,20 @@ const CartItem = ({ item, onQuantityChange, onRemove }) => {
             <div className='flex items-center space-x-2'>
             <button
     onClick={() => onQuantityChange(item.id, quantity - 1)}
-    className="px-2 py-1 bg-gray-300 rounded text-gray-700 hover:bg-gray-400"
+    className="px-2 py-1 bg-gray-300 font-medium rounded text-gray-700 hover:bg-gray-400"
     disabled={quantity <= 1}
 >
     -
 </button>
 <button
     onClick={() => onQuantityChange(item.id, quantity + 1)}
-    className="px-2 py-1 bg-gray-300 rounded text-gray-700 hover:bg-gray-400"
+    className="px-2 py-1 bg-gray-300 font-medium rounded text-gray-700 hover:bg-gray-400"
 >
     +
 </button>
 <button
     onClick={() => onRemove(item.id)}
-    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+    className="px-4 py-2 bg-red-600 font-medium text-white rounded hover:bg-red-700"
 >
     Eliminar
 </button>

@@ -5,7 +5,7 @@ const Home = () => {
  
 
   return (
-    <div>
+    <div className="border border-gray-200 shadow-md p-1 m-4">
         <ProductCarousel /> 
     </div>
   )

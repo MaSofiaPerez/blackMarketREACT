@@ -1,12 +1,13 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, Link } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import { useAuth } from '../Context/AuthContext';
 import { useCart } from '../Context/CartContext';
+import { useFavorites } from '../Context/FavoritesContext'; 
+
 
 const ProductDetail = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null)
-    const [isFavorite, setIsFavorite] = useState(false)
     const { isAuthenticated } = useAuth()
     const [showPopUp, setShowPopUp] = useState(false);
     const navigate = useNavigate()
@@ -14,6 +15,8 @@ const ProductDetail = () => {
     const uid = localStorage.getItem('uid')
     const client = localStorage.getItem('client')
     const {addItemToCart} = useCart()
+    const { favorites, addToFavorites, removeFromFavorites } = useFavorites(); 
+
 
     useEffect(() => {
         if (!isAuthenticated) {
@@ -37,37 +40,20 @@ const ProductDetail = () => {
     const handleAddToCart = async () => {
         try {
             await addItemToCart(id, 1);
-            setShowPopUp(true); // Muestra el mensaje emergente
+            setShowPopUp(true); 
         } catch (error) {
             console.error('Error al añadir al carrito:', error);
         }
     }
     const handleAddToFavorites = () => {
-        fetch(`https://rs-blackmarket-api.herokuapp.com/api/v1/products/${id}/favorite`, {
-            method: 'POST',
-            headers: {
-                'access-token': token,
-                uid: uid,
-                client: client,
-                'Content-type': 'application/json'
-            }
-        })
-        .then(async (response) => {
-            if (!response.ok) {
-                // Intenta extraer la información de error desde la respuesta del servidor
-                const errorData = await response.json();
-                throw new Error(errorData.errors || 'Error desconocido al añadir a favoritos');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Producto añadido a favoritos:', data);
-            setIsFavorite(true);
-        })
-        .catch(error => {
-            console.error('Error al añadir a favoritos:', error.message);
-        });
+        if (favorites.includes(id)) {
+            removeFromFavorites(id);
+        } else {
+            addToFavorites(id);
+        }
     };
+
+    const isFavorite = favorites.includes(id); 
 
     const handleClosePopUp = () => {
         setShowPopUp(false);
@@ -89,6 +75,11 @@ const ProductDetail = () => {
 
     return (
         <div className="container mx-auto p-4">
+             <div className="mb-4">
+             <Link to="/home" className="text-blue-800 font-medium text-lg hover:underline">
+                    ← Volver al Home
+                </Link>
+            </div>
             <div className="flex flex-col lg:flex-row">
                 <div className="w-1/2 h-96 mb-4">
                     <img
@@ -103,15 +94,15 @@ const ProductDetail = () => {
                     <p className="text-xl font-bold mb-4">${product.unit_price}</p>
                     <button
                         onClick={handleAddToCart}
-                        className="bg-blue-500 text-white px-4 py-2 rounded mb-2"
+                        className="bg-blue-800 text-white font-medium px-4 py-2 rounded mb-2"
                     >
                         Agregar al carrito
                     </button>
                     <button
                         onClick={handleAddToFavorites}
-                        className={`ml-4 px-4 py-2 rounded ${isFavorite ? 'bg-yellow-500' : 'bg-gray-500'}`}
+                        className={`ml-4 px-4 py-2 rounded ${isFavorite ? 'bg-red-500 text-white' : 'bg-yellow-500 text-black font-medium'}`}
                     >
-                        {isFavorite ? 'Agregado a Favoritos' : 'Agregar a Favoritos'}
+                        {isFavorite ? 'Eliminar de Favoritos' : 'Agregar a Favoritos'}
                     </button>
                 </div>
             </div>
@@ -124,13 +115,13 @@ const ProductDetail = () => {
                         <div className="flex justify-between">
                             <button
                                 onClick={handleGoToCart}
-                                className="bg-blue-500 text-white px-4 py-2 rounded"
+                                className="bg-blue-800 font-medium text-white px-4 py-2 rounded"
                             >
                                 Ir al Carrito
                             </button>
                             <button
                                 onClick={handleContinueShopping}
-                                className="bg-gray-500 text-white px-4 py-2 rounded"
+                                className="bg-slate-500 font-medium text-white px-4 py-2 rounded"
                             >
                                 Seguir Comprando
                             </button>
