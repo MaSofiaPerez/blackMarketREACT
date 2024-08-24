@@ -3,6 +3,7 @@ import Home from './Home'
 import LoginPage from './LoginPage'
 import RegistrationForm from './RegistrationForm'
 import ProductDetail from './ProductDetail';
+import Cart from './Cart';
 
 const Main = () => {
     return (
@@ -12,6 +13,7 @@ const Main = () => {
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='/home' element={<Home />} />
                 <Route path="/product/:id" element={<ProductDetail />} />
+                <Route path="/cart" element={<Cart/>} />
             </Routes>
         </main>
     )
