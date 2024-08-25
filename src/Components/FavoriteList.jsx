@@ -24,15 +24,13 @@ const FavoriteList = () => {
                     <p className="text-center w-full">No tienes productos en favoritos.</p>
                 ) : (
                     favorites.map((item) => (
-                        <div key={item.id} className="flex-shrink-0 w-full sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">
+                        <div key={item.product.id} className="flex-shrink-0 w-full sm:w-1/3 md:w-1/4 lg:w-1/5 p-2">
                             <div className="bg-white border rounded-lg shadow-lg flex flex-col h-full transition-transform transform hover:scale-105 overflow-hidden">
-                                {/* Contenedor de producto */}
                                 <div className="flex-grow flex items-center justify-center p-4">
                                     <Product product={item.product} />
                                 </div>
-                                {/* Botón de eliminar */}
                                 <button
-                                    onClick={() => removeFromFavorites(item.id)}
+                                    onClick={() => removeFromFavorites(item.product.id)}
                                     className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 mt-auto"
                                 >
                                     Eliminar

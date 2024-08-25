@@ -8,8 +8,6 @@ const Cart = () => {
     const { cart, updateItemQuantity, removeItem } = useCart();
     const [search, setSearch] = useState('');
     const [sort, setSort] = useState('name');
-    const { isAuthenticated } = useAuth();
-    const navigate = useNavigate();
 
     const filteredCart = cart.filter(item => 
         item.product.title.toLowerCase().includes(search.toLowerCase())

@@ -5,12 +5,11 @@ const FavoriteButton = ({ product }) => {
     const { favorites, addToFavorites, removeFromFavorites } = useFavorites();
     const [isFavorite, setIsFavorite] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-    console.log(favorites)
 
     useEffect(() => {
         const checkIfFavorite = () => {
-            if (product && favorites) {
-                setIsFavorite(favorites.some(fav => fav.product.id === product.id));
+            if (product && product.id) {
+                setIsFavorite(favorites.some(fav => fav.product && fav.product.id === product.id));
             }
         };
 
@@ -24,15 +23,12 @@ const FavoriteButton = ({ product }) => {
             } else {
                 await addToFavorites(product);
             }
-            setErrorMessage(''); // Limpiar mensaje en caso de éxito
+            setErrorMessage(''); 
         } catch (error) {
             setErrorMessage(error.message || 'Error al actualizar favoritos.');
-            console.log('Error al actualizar favoritos:', error);
-            setTimeout(() => setErrorMessage(''), 7000); // Limpiar mensaje después de 7 segundos
+            setTimeout(() => setErrorMessage(''), 7000); 
         }
     };
-
-    console.log(isFavorite)
 
     return (
         <div className="relative">

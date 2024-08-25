@@ -64,12 +64,11 @@ export const CartProvider = ({ children }) => {
             if (response.ok) {
                 loadCart();
             } else {
-                // Aquí identificamos si el error es de producto ya agregado
                 if (data.errors && data.errors.some(error => error.includes('already in'))) {
                     throw new Error('El producto ya está en el carrito.');
                 }
                 console.log("Error al añadir al carrito: " + JSON.stringify(data.errors, null, 2));
-                throw new Error(data.errors || 'Error desconocido al añadir al carrito'); // Lanza el error para que se maneje en el componente
+                throw new Error(data.errors || 'Error desconocido al añadir al carrito'); 
             }
     
         } catch (error) {
@@ -96,7 +95,7 @@ export const CartProvider = ({ children }) => {
             });
 
             if (response.ok) {
-                loadCart(); // Recargar el carrito
+                loadCart();
             } else {
                 const data = await response.json();
                 console.log("Error al eliminar el producto: ", data.errors || "Error desconocido");
