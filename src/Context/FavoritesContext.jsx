@@ -24,7 +24,7 @@ export const FavoritesProvider = ({ children }) => {
                 });
                 const data = await response.json();
                 if (response.ok) {
-                    setFavorites(data.products || []);
+                    setFavorites(data.data || []);
                 } else {
                     console.log('Error al cargar favoritos:', data.errors || 'Error desconocido');
                 }
@@ -36,13 +36,13 @@ export const FavoritesProvider = ({ children }) => {
         loadFavorites();
     }, []);
 
-    const addToFavorites = async (productId) => {
+    const addToFavorites = async (product) => {
         const token = localStorage.getItem('access-token');
         const uid = localStorage.getItem('uid');
         const client = localStorage.getItem('client');
     
         try {
-            const response = await fetch(`https://rs-blackmarket-api.herokuapp.com/api/v1/products/${productId}/favorite`, {
+            const response = await fetch(`https://rs-blackmarket-api.herokuapp.com/api/v1/products/${product.id}/favorite`, {
                 method: 'POST',
                 headers: {
                     'access-token': token,
@@ -52,15 +52,18 @@ export const FavoritesProvider = ({ children }) => {
                 }
             });
 
+            const data = await response.json();
+
             if (response.ok) {
-                setFavorites(prevFavorites => [...prevFavorites, productId]);
+                setFavorites([...favorites, product]); 
             } else {
-                const data = await response.json();
-                console.log('Error al añadir a favoritos:', data.errors || 'Error desconocido');
+                throw new Error('El producto ya ha sido agregado a favoritos')
             }
         } catch (error) {
             console.log('Error:', error);
+            throw error;
         }
+
     };
 
 

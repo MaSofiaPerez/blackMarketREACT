@@ -50,18 +50,14 @@ const RegistrationForm = () => {
         
                     const data = await response.json()
         
-                    if (response.ok) {
+                  
                         if (data.status === 'success') {
-                            setMessage('Usuario creado correctamente')
                             navigate('/login')
-                        } else {
-                            setMessage('Error al crear usuario: ' + (data.message || 'Error desconocido'))
+                        } else if(data.status === 'error') {
+                            setMessage('Ya existe un usuario con el e-mail ingresado')
                         }
-                    } else {
-                        setMessage('Error al crear usuario: ' + (data.message || 'Error desconocido'))
-                    }
+            
                 } catch (error) {
-                    console.error('Error details:', error); 
                     setMessage('Error de conexión')
                 }
         }
@@ -75,11 +71,15 @@ const RegistrationForm = () => {
 
         <div className="w-1/2 flex justify-center items-center bg-white">
             <form onSubmit={handleSubmit} className="p-6 max-w-md w-full">
-                <h2 className="text-5xl font-medium mb-6">Crear Cuenta</h2>
+                <h2 className="text-5xl font-medium mb-4">Crear Cuenta</h2>
 
-                {message && <p className="mb-4 text-red-500">{message}</p>}
+                {message && (
+                        <div className="text-red-500 text-md font-bold">
+                            {message}
+                        </div>
+                    )}
 
-                <div className="mb-4">
+                <div className="mb-4 mt-2">
                     <label htmlFor="email" className="block text-gray-700 font-medium">Email</label>
                     <input
                         type="email"

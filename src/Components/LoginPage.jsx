@@ -22,10 +22,6 @@ const LoginPage = () => {
             setError('El email es inválido');
             return false;
         }
-        if (password.length < 6) {
-            setError('La contraseña debe tener al menos 6 caracteres');
-            return false;
-        }
         setError('');
         return true;
     };
@@ -48,8 +44,9 @@ const LoginPage = () => {
                     body: JSON.stringify(user)
                 });
 
+                const data = await response.json();
+
                 if (response.ok) {
-                    const data = await response.json();
                     const accessToken = response.headers.get('access-token');
                     const uid = response.headers.get('uid');
                     const client = response.headers.get('client');
@@ -60,11 +57,9 @@ const LoginPage = () => {
                     setMessage('Inicio de sesión exitoso');
                     navigate('/home');
                 } else {
-                    const errorData = await response.json();
-                    setMessage((errorData.error || 'Error desconocido'));
+                    setMessage('E-mail o contraseña inválidos.');
                 }
             } catch (error) {
-                console.error('Error details:', error); // Log the error to the console
                 setMessage('Error de conexión');
             }
         }
@@ -76,9 +71,14 @@ const LoginPage = () => {
         </div>
         <div className="w-1/2 flex justify-center items-center bg-white">
             <form onSubmit={handleSubmit} className="p-6 max-w-md w-full">
-                <h2 className="text-5xl font-medium mb-6 ">Iniciar Sesión</h2>
+                <h2 className="text-5xl font-medium mb-4 ">Iniciar Sesión</h2>
 
-                {message && <p className="mb-4 text-red-500">{message}</p>}
+
+                {message && (
+                        <div className="text-red-500 text-md font-bold mb-1">
+                            {message}
+                        </div>
+                    )}                
                 {error && <p className="mb-4 text-red-500">{error}</p>}
 
                 <div className="mb-4">

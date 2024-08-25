@@ -60,15 +60,21 @@ export const CartProvider = ({ children }) => {
             });
     
             const data = await response.json();
-    
+
             if (response.ok) {
                 loadCart();
             } else {
-                console.log("Error al añadir al carrito: " + JSON.stringify(data.errors, null, 2))
-               
+                // Aquí identificamos si el error es de producto ya agregado
+                if (data.errors && data.errors.some(error => error.includes('already in'))) {
+                    throw new Error('El producto ya está en el carrito.');
+                }
+                console.log("Error al añadir al carrito: " + JSON.stringify(data.errors, null, 2));
+                throw new Error(data.errors || 'Error desconocido al añadir al carrito'); // Lanza el error para que se maneje en el componente
             }
+    
         } catch (error) {
             console.log("Error: ", error);
+            throw error;
         }
     };
     
