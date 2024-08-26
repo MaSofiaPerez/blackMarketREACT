@@ -60,15 +60,20 @@ export const CartProvider = ({ children }) => {
             });
     
             const data = await response.json();
-    
+
             if (response.ok) {
                 loadCart();
             } else {
-                console.log("Error al añadir al carrito: " + JSON.stringify(data.errors, null, 2))
-               
+                if (data.errors && data.errors.some(error => error.includes('already in'))) {
+                    throw new Error('El producto ya está en el carrito.');
+                }
+                console.log("Error al añadir al carrito: " + JSON.stringify(data.errors, null, 2));
+                throw new Error(data.errors || 'Error desconocido al añadir al carrito'); 
             }
+    
         } catch (error) {
             console.log("Error: ", error);
+            throw error;
         }
     };
     
@@ -90,7 +95,7 @@ export const CartProvider = ({ children }) => {
             });
 
             if (response.ok) {
-                loadCart(); // Recargar el carrito
+                loadCart();
             } else {
                 const data = await response.json();
                 console.log("Error al eliminar el producto: ", data.errors || "Error desconocido");

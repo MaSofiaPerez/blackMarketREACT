@@ -22,10 +22,6 @@ const LoginPage = () => {
             setError('El email es inválido');
             return false;
         }
-        if (password.length < 6) {
-            setError('La contraseña debe tener al menos 6 caracteres');
-            return false;
-        }
         setError('');
         return true;
     };
@@ -48,8 +44,9 @@ const LoginPage = () => {
                     body: JSON.stringify(user)
                 });
 
+                const data = await response.json();
+
                 if (response.ok) {
-                    const data = await response.json();
                     const accessToken = response.headers.get('access-token');
                     const uid = response.headers.get('uid');
                     const client = response.headers.get('client');
@@ -60,57 +57,67 @@ const LoginPage = () => {
                     setMessage('Inicio de sesión exitoso');
                     navigate('/home');
                 } else {
-                    const errorData = await response.json();
-                    setMessage((errorData.error || 'Error desconocido'));
+                    setMessage('E-mail o contraseña inválidos.');
                 }
             } catch (error) {
-                console.error('Error details:', error); // Log the error to the console
                 setMessage('Error de conexión');
             }
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="p-6 max-w-md mx-auto bg-white shadow-md rounded">
-            <h2 className="text-lg font-medium mb-4">Iniciar Sesión</h2>
-            {message && <p className="mb-4 text-red-500">{message}</p>}
-            {error && <p className="mb-4 text-red-500">{error}</p>}
+        <div className="flex min-h-screen">
+        <div className="w-1/2 bg-cover bg-center bg-imgLogin rounded">
+        </div>
+        <div className="w-1/2 flex justify-center items-center bg-white">
+            <form onSubmit={handleSubmit} className="p-6 max-w-md w-full">
+                <h2 className="text-5xl font-medium mb-4 ">Iniciar Sesión</h2>
 
-            <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-700">Email</label>
-                <input
-                    id="email"
-                    type="email"
-                    name="email"
-                    autoComplete="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full p-2 border rounded mt-1"
-                    required
-                />
-            </div>
 
-            <div className="mb-4">
-                <label htmlFor="password" className="block text-gray-700">Contraseña</label>
-                <input
-                    id="password"
-                    type="password"
-                    name="password"
-                    autoComplete="current-password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full p-2 border rounded mt-1"
-                    required
-                />
-            </div>
+                {message && (
+                        <div className="text-red-500 text-md font-bold mb-1">
+                            {message}
+                        </div>
+                    )}                
+                {error && <p className="mb-4 text-red-500">{error}</p>}
 
-            <button
-                type="submit"
-                className="w-full bg-blue-500 text-white p-2 rounded"
-            >
-                Iniciar sesión
-            </button>
-        </form>
+                <div className="mb-4">
+                    <label htmlFor="email" className="block text-gray-700 font-medium">Email</label>
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        autoComplete="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full p-2 border rounded mt-1"
+                        required
+                    />
+                </div>
+
+                <div className="mb-4">
+                    <label htmlFor="password" className="block text-gray-700 font-medium">Contraseña</label>
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        autoComplete="current-password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-full p-2 border rounded mt-1"
+                        required
+                    />
+                </div>
+
+                <button
+                    type="submit"
+                    className="w-full bg-blue-700 text-white font-medium p-2 rounded"
+                >
+                    Iniciar sesión
+                </button>
+            </form>
+        </div>
+    </div>
     );
 };
 

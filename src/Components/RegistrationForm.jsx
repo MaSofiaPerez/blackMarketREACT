@@ -50,18 +50,14 @@ const RegistrationForm = () => {
         
                     const data = await response.json()
         
-                    if (response.ok) {
+                  
                         if (data.status === 'success') {
-                            setMessage('Usuario creado correctamente')
                             navigate('/login')
-                        } else {
-                            setMessage('Error al crear usuario: ' + (data.message || 'Error desconocido'))
+                        } else if(data.status === 'error') {
+                            setMessage('Ya existe un usuario con el e-mail ingresado')
                         }
-                    } else {
-                        setMessage('Error al crear usuario: ' + (data.message || 'Error desconocido'))
-                    }
+            
                 } catch (error) {
-                    console.error('Error details:', error); 
                     setMessage('Error de conexión')
                 }
         }
@@ -69,77 +65,89 @@ const RegistrationForm = () => {
 
 
     return (
-        <form onSubmit={handleSubmit} className="p-6 max-w-md mx-auto bg-white shadow-md rounded">
-            <h2 className="text-lg font-medium mb-4">Crear Cuenta</h2>
-            {message && <p className="mb-4 text-red-500">{message}</p>}
+        <div className="flex min-h-screen">
+        <div className="w-1/2 bg-cover bg-right rounded bg-imgRegistro" >
+        </div>
 
-            <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-700">Email</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    autoComplete="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full p-2 border rounded mt-1"
-                    required
-                />
-                {error.email && <p className="text-red-500">{error.email}</p>}
-            </div>
+        <div className="w-1/2 flex justify-center items-center bg-white">
+            <form onSubmit={handleSubmit} className="p-6 max-w-md w-full">
+                <h2 className="text-5xl font-medium mb-4">Crear Cuenta</h2>
 
-            <div className="mb-4">
-                <label htmlFor="name" className="block text-gray-700">Nombre</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    autoComplete="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full p-2 border rounded mt-1"
-                    required
-                />
-                {error.name && <p className="text-red-500">{error.name}</p>}
-            </div>
+                {message && (
+                        <div className="text-red-500 text-md font-bold">
+                            {message}
+                        </div>
+                    )}
 
-            <div className="mb-4">
-                <label htmlFor="password" className="block text-gray-700">Contraseña</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    autoComplete="new-password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full p-2 border rounded mt-1"
-                    required
-                />
-                {error.password && <p className="text-red-500">{error.password}</p>}
-            </div>
+                <div className="mb-4 mt-2">
+                    <label htmlFor="email" className="block text-gray-700 font-medium">Email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        autoComplete="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full p-2 border rounded mt-1"
+                        required
+                    />
+                    {error.email && <p className="text-red-500">{error.email}</p>}
+                </div>
 
-            <div className="mb-4">
-                <label htmlFor="confirmPassword" className="block text-gray-700">Confirmar constraseña</label>
-                <input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    autoComplete="off"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full p-2 border rounded mt-1"
-                    required
-                />
-                {error.confirmPassword && <p className="text-red-500">{error.confirmPassword}</p>}
-            </div>
+                <div className="mb-4">
+                    <label htmlFor="name" className="block text-gray-700 font-medium">Nombre</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        autoComplete="name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="w-full p-2 border rounded mt-1"
+                        required
+                    />
+                    {error.name && <p className="text-red-500">{error.name}</p>}
+                </div>
 
-            <button
-                type="submit"
-                className="w-full bg-blue-500 text-white p-2 rounded"
-            >
-                Crear cuenta
-            </button>
-        </form>
+                <div className="mb-4">
+                    <label htmlFor="password" className="block text-gray-700 font-medium">Contraseña</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        autoComplete="new-password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-full p-2 border rounded mt-1"
+                        required
+                    />
+                    {error.password && <p className="text-red-500">{error.password}</p>}
+                </div>
+
+                <div className="mb-4">
+                    <label htmlFor="confirmPassword" className="block text-gray-700 font-medium">Confirmar Contraseña</label>
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        autoComplete="new-password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        className="w-full p-2 border rounded mt-1"
+                        required
+                    />
+                    {error.confirmPassword && <p className="text-red-500">{error.confirmPassword}</p>}
+                </div>
+
+                <button
+                    type="submit"
+                    className="w-full bg-blue-900 text-white font-medium p-2 rounded"
+                >
+                    Crear Cuenta
+                </button>
+            </form>
+        </div>
+    </div>
     )
 }
 

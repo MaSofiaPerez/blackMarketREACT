@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useCart } from '../Context/CartContext';
 import CartItem from './CartItem'; 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 
 const Cart = () => {
     const { cart, updateItemQuantity, removeItem } = useCart();
     const [search, setSearch] = useState('');
     const [sort, setSort] = useState('name');
-    const { isAuthenticated } = useAuth();
-    const navigate = useNavigate();
 
     const filteredCart = cart.filter(item => 
         item.product.title.toLowerCase().includes(search.toLowerCase())
@@ -31,12 +29,9 @@ const Cart = () => {
         <div className="container mx-auto p-6">
            <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-bold">Tu carrito</h2>
-                <button 
-                    onClick={() => navigate('/home')}
-                    className="px-4 py-2 bg-blue-500 text-white rounded"
-                >
-                    Ir al Home
-                </button>
+                <Link to="/home" className="text-blue-800 font-medium text-lg hover:underline">
+                    ← Volver al Home
+                </Link>
             </div>
             <div className="mb-4">
                 <input 
@@ -50,13 +45,13 @@ const Cart = () => {
             <div className="mb-4 flex space-x-4">
                 <button 
                     onClick={() => setSort('name')}
-                    className={`px-4 py-2 rounded ${sort === 'name' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+                    className={`px-4 py-2 rounded ${sort === 'name' ? 'bg-blue-800 font-medium text-white' : 'bg-gray-200 font-medium text-gray-700'}`}
                 >
                     Ordenar por nombre
                 </button>
                 <button 
                     onClick={() => setSort('price')}
-                    className={`px-4 py-2 rounded ${sort === 'price' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+                    className={`px-4 py-2 rounded ${sort === 'price' ? 'bg-blue-800 font-medium text-white' : 'bg-gray-200 font-medium text-gray-700'}`}
                 >
                     Ordenar por precio
                 </button>
