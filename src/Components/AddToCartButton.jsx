@@ -46,7 +46,7 @@ const AddToCartButton = ({ productId }) => {
         <div className="relative">
         <button
             onClick={handleClick}
-            className="bg-blue-800 text-white font-medium px-4 py-2 rounded"
+            className="bg-blue-800 text-white font-medium px-4 py-2 rounded hover:bg-blue-900"
         >
             Agregar al carrito
         </button>
@@ -63,13 +63,13 @@ const AddToCartButton = ({ productId }) => {
                     <div className="flex justify-between">
                         <button
                             onClick={handleGoToCart}
-                            className="bg-blue-800 font-medium text-white px-4 py-2 rounded"
+                            className="bg-blue-800 font-medium text-white px-4 py-2 rounded hover:bg-blue-900"
                         >
                             Ir al Carrito
                         </button>
                         <button
                             onClick={handleContinueShopping}
-                            className="bg-slate-500 font-medium text-white px-4 py-2 rounded"
+                            className="bg-slate-500 font-medium text-white px-4 py-2 rounded hover:bg-slate-600"
                         >
                             Seguir Comprando
                         </button>
