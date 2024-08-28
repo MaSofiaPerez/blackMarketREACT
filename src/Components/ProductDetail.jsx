@@ -3,10 +3,13 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 import FavoriteButton from './FavoriteButton';
 import AddToCartButton from './AddToCartButton';
+import ProductCarousel from './PoductCarousel';
+
 
 const ProductDetail = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
+    const [recommendedProducts, setRecommendedProducts] = useState([]);
     const [errorMessage, setErrorMessage] = useState(null);
     const { isAuthenticated } = useAuth();
     const navigate = useNavigate();
@@ -29,7 +32,25 @@ const ProductDetail = () => {
             }
         })
             .then(response => response.json())
-            .then(data => setProduct(data))
+            .then(data => {
+                setProduct(data);
+
+                fetch(`https://rs-blackmarket-api.herokuapp.com/api/v1/products?categories[]=${data.category.name}`, {
+                    method: 'GET',
+                    headers: {
+                        'access-token':token,
+                        uid: uid,
+                        client: client,
+                        'Content-type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => setRecommendedProducts(data.data))
+                .catch(error => {
+                    console.log('Error: ', error);
+                    setErrorMessage('Ocurrió un error al cargar productos recomendados.')
+                })
+             })
             .catch(error => {
                 console.log('Error: ', error);
                 setErrorMessage('Ocurrió un error al cargar el producto.');
@@ -82,6 +103,10 @@ const ProductDetail = () => {
                         </div>
                     )}
                 </div>
+            </div>
+            <div className='mt-8'>
+                <h3 className='text-2xl font-bold mb-4'>Productos recomendados</h3>
+                <ProductCarousel products={recommendedProducts}></ProductCarousel>
             </div>
         </div>
     );

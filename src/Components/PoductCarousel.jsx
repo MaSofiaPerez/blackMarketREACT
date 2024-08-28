@@ -5,7 +5,6 @@ const ProductCarousel = ( {products}) => {
   
   return (
     <div className="carousel-container mt-8 p-4">
-      <h3 className="text-2xl font-bold mb-4">Productos</h3>
       <div className="flex space-x-4 overflow-x-scroll">
         {products.length > 0 ? (
           products.map(product => (

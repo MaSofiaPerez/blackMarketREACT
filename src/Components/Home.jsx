@@ -48,6 +48,7 @@ const Home = () => {
           className='w-full p-2 border border-gray-200 rounded'
         />
       </div>
+        <h3 className="text-2xl font-bold mb-4">Productos</h3>
         <ProductCarousel products={filteringProducts}/> 
     </div>
   )
