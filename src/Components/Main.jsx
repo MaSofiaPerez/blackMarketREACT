@@ -8,6 +8,8 @@ import Banner from './Banner';
 import { useAuth } from '../Context/AuthContext';
 import { useEffect } from 'react';
 import FavoritesPage from './FavoritesPage';
+import ResetPassword from './ResetPassword';
+import RequestPasswordReset from './RequestPasswordReset';
 
 
 
@@ -42,6 +44,8 @@ const Main = () => {
                 <Route path="/product/:id" element={<ProductDetail />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/favorites" element = {<FavoritesPage />} />
+                <Route path="/request-password-reset" element={<RequestPasswordReset />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
             </Routes>
         </main>
     )

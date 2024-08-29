@@ -80,7 +80,7 @@ const ProductDetail = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row m-2">
+            <div className="flex flex-col lg:flex-row">
             <div className="w-full lg:w-1/2 mb-4 lg:mb-0 flex justify-center">
                     <img
                         src={product.pictures[0]}

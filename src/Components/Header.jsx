@@ -22,6 +22,7 @@ const Header = () => {
           <div>
             <Link to='/login' className="bg-blue-700 px-4 py-2 mr-2 rounded">Sign In</Link>
             <Link to='/' className="bg-blue-900 px-4 py-2 rounded">Sign Up</Link>
+            <Link to="/request-password-reset">Cambiar contraseña</Link>
           </div>
         )}
       </nav>
