@@ -50,7 +50,7 @@ const AddToCartButton = ({ productId, stock }) => {
             ${stock <= 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-800 hover:bg-blue-900'} text-white`}
             disabled={stock <= 0}
         >
-            Agregar al carrito
+            {stock > 0 ? 'Agregar al carrito' : 'Agotado'}
         </button>
         {errorMessage && (
             <div className="absolute  bg-red-600 mt- text-white px-4 py-2 rounded shadow-md z-50">
