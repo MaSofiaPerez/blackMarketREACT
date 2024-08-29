@@ -80,6 +80,7 @@ const ProductDetail = () => {
                 </div>
             </div>
 
+            <div className="flex flex-col lg:flex-row">
             <div className="flex flex-col lg:flex-row m-2 p-4 border border-gray-200 rounded-md">
             <div className="w-full lg:w-1/2 mb-4 lg:mb-0 flex justify-center">
                     <img
