@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ProductCarousel from "./PoductCarousel"
+import SearchBar from './SearchBar';
 
 const Home = () => {
   const [searchQuery, setSearchQuery] = useState('')
@@ -40,13 +41,7 @@ const Home = () => {
   return (
     <div className="border border-gray-200 shadow-md p-2 m-6">
       <div className='mb-4 p-6'>
-        <input
-          type='text'
-          placeholder='Buscar productos...'
-          value={searchQuery}
-          onChange={handleSearchQuery}
-          className='w-full p-2 border border-gray-200 rounded'
-        />
+      <SearchBar search={searchQuery} setSearch={setSearchQuery} />
       </div>
         <h3 className="text-2xl font-bold m-4">Productos</h3>
         <ProductCarousel products={filteringProducts} />

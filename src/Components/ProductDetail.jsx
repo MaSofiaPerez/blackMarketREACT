@@ -4,6 +4,7 @@ import { useAuth } from '../Context/AuthContext';
 import FavoriteButton from './FavoriteButton';
 import AddToCartButton from './AddToCartButton';
 import ProductCarousel from './PoductCarousel';
+import NavLink from './NavLink';
 
 
 const ProductDetail = () => {
@@ -61,28 +62,30 @@ const ProductDetail = () => {
 
     return (
         <div className="container mx-auto p-4 relative">
-            <div className="flex justify-between items-start mb-4">
-                <div>
-                    <Link to="/home" className="text-blue-800 font-medium text-lg hover:underline">
-                        ← Volver al Home
-                    </Link>
-                </div>
-                <div className="flex space-x-4">
-                    <Link to="/favorites" className="text-blue-800 font-medium text-lg hover:underline flex items-center">
-                        Ir a Favoritos →
-                    </Link>
-                    <Link to="/cart" className="text-blue-800 font-medium text-lg hover:underline flex items-center">
-                        Ir al Carrito →
-                    </Link>
+             <div className="bg-gray-100 p-2 rounded-lg mb-2">
+                <div className="flex flex-col md:flex-row md:justify-between items-start">
+                    <div className="mb-4 md:mb-0">
+                        <NavLink to="/home">
+                            Volver al Home
+                        </NavLink>
+                    </div>
+                    <div className="flex flex-col md:flex-row space-y-2 md:space-x-4 md:space-y-0 w-full md:w-auto">
+                        <NavLink to="/favorites">
+                            Ir a Favoritos
+                        </NavLink>
+                        <NavLink to="/cart">
+                            Ir al Carrito
+                        </NavLink>
+                    </div>
                 </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row">
-                <div className="w-1/2 h-96 mb-4">
+            <div className="flex flex-col lg:flex-row m-2">
+            <div className="w-full lg:w-1/2 mb-4 lg:mb-0 flex justify-center">
                     <img
                         src={product.pictures[0]}
                         alt={product.title}
-                        className="w-full h-full object-contain"
+                        className="w-full max-w-md h-auto object-contain rounded"
                     />
                 </div>
                 <div className="lg:w-1/2">

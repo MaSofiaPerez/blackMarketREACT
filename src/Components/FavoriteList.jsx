@@ -2,20 +2,21 @@ import React from 'react';
 import { useFavorites } from '../Context/FavoritesContext';
 import Product from './Product';
 import { Link } from 'react-router-dom';
+import NavLink from './NavLink';
 
 const FavoriteList = () => {
     const { favorites, removeFromFavorites } = useFavorites();
 
     return (
         <div className="container mx-auto p-4">
-             <div className="flex justify-end items-center mb-4">
-                <div>
-                    <Link to="/home" className="text-blue-800 font-medium text-lg hover:underline mr-4">
-                        ← Volver al Home
-                    </Link>
-                    <Link to="/cart" className="text-blue-800 font-medium text-lg hover:underline">
-                        Ir al Carrito →
-                    </Link>
+            <div className="bg-gray-100 p-2 rounded-lg mb-2">
+                <div className="flex flex-col md:flex-row md:justify-end md:space-x-4 md:space-y-0 space-y-2 ">
+                    <NavLink to="/home" >
+                        Volver al Home
+                    </NavLink>
+                    <NavLink to="/cart" >
+                        Ir al Carrito 
+                    </NavLink>
                 </div>
             </div>
             <h1 className="text-2xl font-bold mb-4">Mis Favoritos</h1>
