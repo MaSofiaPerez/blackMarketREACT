@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SignOut from './SignOut';
 import { useAuth } from '../Context/AuthContext';
+import { FaShoppingCart, FaHeart} from 'react-icons/fa';
 
 const Header = () => {
   const { isAuthenticated } = useAuth();
@@ -15,7 +16,17 @@ const Header = () => {
   return (
     <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
       <h1 className="text-xl font-bold">BlackMarket</h1>
-      <nav>
+      <nav className='flex items-center'>
+        {isAuthenticated && (
+          <>
+          <Link to="/cart" className='mr-4 flex items-center'>
+            <FaShoppingCart size={20} className='mr-1'/>
+          </Link>
+          <Link to="/favorites" className='mr-4 flex items-center'>
+            <FaHeart size={20} className='mr-1'/>
+          </Link>
+          </>
+        )}
         {showSignOut ? (
           <SignOut />
         ) : (
