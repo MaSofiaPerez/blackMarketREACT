@@ -38,7 +38,7 @@ const Home = () => {
   )
 
   return (
-    <div className="border border-gray-200 shadow-md p-1 m-4">
+    <div className="border border-gray-200 shadow-md p-2 m-6">
       <div className='mb-4 p-6'>
         <input
           type='text'
@@ -48,8 +48,8 @@ const Home = () => {
           className='w-full p-2 border border-gray-200 rounded'
         />
       </div>
-        <h3 className="text-2xl font-bold mb-4">Productos</h3>
-        <ProductCarousel products={filteringProducts}/> 
+        <h3 className="text-2xl font-bold m-4">Productos</h3>
+        <ProductCarousel products={filteringProducts} />
     </div>
   )
 }

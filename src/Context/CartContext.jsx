@@ -43,6 +43,28 @@ export const CartProvider = ({ children }) => {
         const client = localStorage.getItem('client');
     
         try {
+            // Fetch the product details to check the stock
+            const productResponse = await fetch(`https://rs-blackmarket-api.herokuapp.com/api/v1/products/${productId}`, {
+                method: 'GET',
+                headers: {
+                    'access-token': token,
+                    uid: uid,
+                    client: client,
+                    'Content-type': 'application/json'
+                }
+            });
+    
+            const productData = await productResponse.json();
+    
+            if (!productResponse.ok) {
+                console.log("Error al obtener el producto: ", productData.errors || "Error desconocido");
+                throw new Error(productData.errors || "Error desconocido al obtener el producto");
+            }
+    
+            if (productData.stock < quantity) {
+                throw new Error('No hay suficiente stock disponible.');
+            }
+    
             const response = await fetch('https://rs-blackmarket-api.herokuapp.com/api/v1/shopping_cart/line_items', {
                 method: 'POST',
                 headers: {
@@ -60,7 +82,7 @@ export const CartProvider = ({ children }) => {
             });
     
             const data = await response.json();
-
+    
             if (response.ok) {
                 loadCart();
             } else {
@@ -68,7 +90,7 @@ export const CartProvider = ({ children }) => {
                     throw new Error('El producto ya está en el carrito.');
                 }
                 console.log("Error al añadir al carrito: " + JSON.stringify(data.errors, null, 2));
-                throw new Error(data.errors || 'Error desconocido al añadir al carrito'); 
+                throw new Error(data.errors || 'Error desconocido al añadir al carrito');
             }
     
         } catch (error) {

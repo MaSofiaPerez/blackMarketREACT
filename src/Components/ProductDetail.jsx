@@ -92,7 +92,7 @@ const ProductDetail = () => {
 
                     <div className="w-full flex flex-col">
                         <div className="flex space-x-4 mb-4">
-                            <AddToCartButton productId={id} />
+                            <AddToCartButton productId={id} stock={product.stock}/>
                             <FavoriteButton product={product} />
                         </div>
                     </div>

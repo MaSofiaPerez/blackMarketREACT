@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useCart } from '../Context/CartContext';
 import {  useNavigate, Link } from 'react-router-dom';
 
-const AddToCartButton = ({ productId }) => {
+const AddToCartButton = ({ productId, stock }) => {
     const { addItemToCart } = useCart();
     const [errorMessage, setErrorMessage] = useState('');
     const [showPopUp, setShowPopUp] = useState(false);
@@ -13,7 +13,7 @@ const AddToCartButton = ({ productId }) => {
             await addItemToCart(productId, 1);
             setErrorMessage('');
             setShowPopUp(true);
-            setTimeout(() => setShowPopUp(false), 5000); // Ocultar pop-up después de 5 segundos
+            setTimeout(() => setShowPopUp(false), 5000); 
         } catch (error) {
             if (error.message === 'El producto ya está en el carrito.') {
                 setErrorMessage(<div>
@@ -25,7 +25,7 @@ const AddToCartButton = ({ productId }) => {
             } else {
                 setErrorMessage('Ocurrió un error al añadir el producto al carrito.');
             }
-            setTimeout(() => setErrorMessage(''), 7000); // Limpiar mensaje después de 7 segundos
+            setTimeout(() => setErrorMessage(''), 7000); 
         }
     };
     const handleClosePopUp = () => {
@@ -46,7 +46,9 @@ const AddToCartButton = ({ productId }) => {
         <div className="relative">
         <button
             onClick={handleClick}
-            className="bg-blue-800 text-white font-medium px-4 py-2 rounded hover:bg-blue-900"
+            className={` font-medium px-4 py-2 rounded 
+            ${stock <= 0 ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-800 hover:bg-blue-900'} text-white`}
+            disabled={stock <= 0}
         >
             Agregar al carrito
         </button>
