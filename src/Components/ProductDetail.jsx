@@ -62,8 +62,8 @@ const ProductDetail = () => {
 
     return (
         <div className="container mx-auto p-4 relative">
-             <div className="bg-gray-100 p-2 rounded-lg mb-2">
-                <div className="flex flex-col md:flex-row md:justify-between items-start">
+             <div className="bg-gray-100 p-2 rounded-lg mb-6">
+                <div className="flex flex-col md:flex-row md:justify-between items-center">
                     <div className="mb-4 md:mb-0">
                         <NavLink to="/home">
                             Volver al Home
@@ -81,11 +81,12 @@ const ProductDetail = () => {
             </div>
 
             <div className="flex flex-col lg:flex-row">
+            <div className="flex flex-col lg:flex-row m-2 p-4 border border-gray-200 rounded-md">
             <div className="w-full lg:w-1/2 mb-4 lg:mb-0 flex justify-center">
                     <img
                         src={product.pictures[0]}
                         alt={product.title}
-                        className="w-full max-w-md h-auto object-contain rounded"
+                        className="w-full max-w-md h-auto object-contain rounded-md shadow-md"
                     />
                 </div>
                 <div className="lg:w-1/2">
