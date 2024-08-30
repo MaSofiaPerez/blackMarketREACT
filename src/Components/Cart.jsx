@@ -4,7 +4,6 @@ import CartItem from './CartItem';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 import SearchBar from './SearchBar';
-import NavLink from './NavLink';
 
 const Cart = () => {
     const { cart, updateItemQuantity, removeItem } = useCart();
@@ -31,11 +30,7 @@ const Cart = () => {
 
     return (
         <div className="container mx-auto p-6">
-           <div className="bg-gray-100 p-2 rounded-lg mb-2 flex justify-end">
-                <NavLink to="/home">
-                    Volver al Home
-                </NavLink>
-            </div>
+
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-2xl font-bold">Tu carrito</h2>
 
