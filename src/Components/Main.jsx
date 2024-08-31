@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import FavoritesPage from './FavoritesPage';
 import ResetPassword from './ResetPassword';
 import RequestPasswordReset from './RequestPasswordReset';
+import OrdersView from './OrdersView';
 
 
 
@@ -46,6 +47,7 @@ const Main = () => {
                 <Route path="/favorites" element = {<FavoritesPage />} />
                 <Route path="/request-password-reset" element={<RequestPasswordReset />} />
                 <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/orders" element={<OrdersView />}></Route>
             </Routes>
         </main>
     )

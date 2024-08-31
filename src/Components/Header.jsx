@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SignOut from './SignOut';
 import { useAuth } from '../Context/AuthContext';
 import { FaShoppingCart, FaHeart, FaHome } from 'react-icons/fa';
+import { FaRegRectangleList } from 'react-icons/fa6';
 
 const Header = () => {
   const { isAuthenticated } = useAuth();
@@ -19,14 +20,17 @@ const Header = () => {
       <nav className='flex items-center'>
         {isAuthenticated && (
           <>
+            <Link to="/home" className='mr-4 flex items-center'>
+              <FaHome size={20} />
+            </Link>
             <Link to="/cart" className='mr-4 flex items-center'>
               <FaShoppingCart size={20} className='mr-1' />
             </Link>
             <Link to="/favorites" className='mr-4 flex items-center'>
               <FaHeart size={20} className='mr-1' />
             </Link>
-            <Link to="/home" className='mr-4 flex items-center'>
-              <FaHome size={20} />
+            <Link to="/orders" className='mr-4 flex items-center'>
+              <FaRegRectangleList />
             </Link>
           </>
         )}

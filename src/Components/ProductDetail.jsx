@@ -57,7 +57,7 @@ const ProductDetail = () => {
             });
     }, [isAuthenticated, navigate, id, token, uid, client]);
 
-    if (!product) return <p>Loading...</p>;
+    if (!product) return <p>Cargando...</p>;
 
     return (
         <div className="container mx-auto p-4 mt-6">
