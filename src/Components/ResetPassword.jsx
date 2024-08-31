@@ -16,38 +16,37 @@ const ResetPassword = () => {
         e.preventDefault();
         setError('');
         setMessage('');
-    
+
         if (password !== passwordConfirmation) {
             setError('Las contraseñas no coinciden');
             return;
         }
-    
+
         try {
             const response = await fetch('https://rs-blackmarket-api.herokuapp.com/api/v1/users/password', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${resetToken}`,  
                 },
                 body: JSON.stringify({
-                    password: password,
-                    password_confirmation: passwordConfirmation,
+                    "password": password,
+                    "password_confirmation": passwordConfirmation,
                 }),
             });
-    
+
             const data = await response.json();
-    
+
             if (response.ok) {
-                setMessage(data.message); 
-                setTimeout(() => navigate('/login'), 3000); 
+                setMessage(data.message);
+                setTimeout(() => navigate('/login'), 3000);
             } else {
-                setError(data.errors[0]); 
+                setError(data.error);
             }
         } catch (error) {
             setError('Ocurrió un error al cambiar la contraseña. Por favor, intenta de nuevo.');
         }
     };
-    
+
 
     return (
         <div className="container mx-auto p-6">
