@@ -29,7 +29,7 @@ const RequestPasswordReset = () => {
                 setMessage(data.message);
                 setIsSubmitted(true); 
             } else {
-                setError(data.errors[0]); 
+                setError(data.error); 
             }
         } catch (error) {
             setError('Ocurrió un error al enviar la solicitud. Por favor, intenta de nuevo.');
@@ -55,7 +55,7 @@ const RequestPasswordReset = () => {
                             required
                         />
                     </div>
-                    {error && <p className="text-red-500">{error}</p>}
+                    {error && <p className="text-red-500 pb-2 font-medium">{error}</p>}
                     <button
                         type="submit"
                         className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
